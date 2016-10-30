@@ -12,7 +12,7 @@ __Current Functionality:__
 
 __Future Functionality:__ _for subsequent versions if time allows_
 * add a unique [data] attribute to each message in case I'd like more options with altering the contents, setting an "undo-delete" option, setting extra attributes for later delegation (i.e. sorting, grouping & e-mailing certain messages to management or another recipient).
-* replace the date format to a jquery/javascript function which self corrects to the date of the message. In my current case the voicemail system at work specifies the day (mon, tues, wed... of voicemessages instead of the numbered day. So I would look to create one text field with an event which would fire upon exiting the text block and update the block with [mm/dd @ HH:MM] using [new Date()] as a reference.
+* replace the date format to a jquery/javascript function which self corrects to the date of the message. In my current case the voicemail system at work specifies the day (mon, tues, wed) of voicemessages instead of the numbered day. So I would look to create one text field with an event which would fire upon exiting the text block and update the block with [mm/dd @ HH:MM] using [new Date()] as a reference.
 * Parse information out of the message such terms "reschedule", "to reschedule", "reschedule to", "call back", "cancel", phone numbers, e-mails, dates, etc.
 
 _I'm currently going through a coding bootcamp so we'll see how the updates go._
