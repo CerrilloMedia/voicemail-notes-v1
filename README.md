@@ -1,5 +1,5 @@
 # voicemail-notes-v1
-a tool jot down voicemails messages while at work (a salon) to quickly print.
+a tool jot down voicemail messages while at work (a salon) to quickly print.
 
 A little something I put together to quickly jot down voicemails which I don't plan on keeping later. I work in retail so this is something to be able to type up with date and time, print then delegate to the team if need be.
 
