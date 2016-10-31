@@ -22,6 +22,7 @@ body {
     font-family: 'Open Sans';
     min-height: 100%;
     position:relative;
+    background-color:rgba(207,215,236,1);
 }
 
 #topBar {
@@ -51,7 +52,7 @@ body {
 #messages {
     box-sizing: border-box;
     display: inline-block;
-    max-width: 500px;
+    max-width: 800px;
     width:100%;
     margin-top: 3rem;
 }
@@ -59,11 +60,16 @@ body {
 .message-body {
     display: block;
     width: 98%;
-    background: rgba(92,115,169,.4);
+    background: rgba(144,147,154,1);
     margin:.5rem auto;
     border-radius: .25rem;
     padding: .3rem;
     box-shadow: 0 .1rem .3rem rgba(0,0,0,.4);
+}
+
+.message-number {
+    float:right;
+    color:#fff;
 }
 
 .message-block-date, .message-block-time {
@@ -98,28 +104,38 @@ input[type="date"],input[type="time"] {
 }
 
 .callBack { /* swap with ion-ios-telephone-outline to outline  */
-    position:;
+    position:relative;
     right:0px;
     font-size:2rem;
 }
+
 .button-remove-message {
     font-size:2rem;
     margin-right: .5rem;
     float:right;
+    background:none;
+    border:none;
 }
 
 .button-remove-message:hover {
     cursor: pointer;
+    color:white;
 }
 
-#addMessage {
+/* #addMessage */
+.add-section {
+    cursor:pointer;
     width:4rem;
-    margin: -.5rem auto -1.5rem 1rem;
+    margin: 0 auto -1.5rem 1rem;
     border-radius: 0 0 .6rem .6rem;
     text-align: center;
-    background: rgb(95,158,160);
+    background: rgb(105,107,113);
+    position:relative;
+    top: -.5rem;
+    box-shadow: inset 0 .3rem .3rem 0 rgba(32,30,30,.3);
+    border:none;
 }
 
-#addMessage:hover {
-    cursor: pointer;
+.add-section:hover {
+    color: #fff;
 }

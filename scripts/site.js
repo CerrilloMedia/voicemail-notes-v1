@@ -1,9 +1,11 @@
 var totalActiveMessages = 0;
+var totalMessages = 0;
 
 var newMessage = function() {
     
     var template = 
 '        <section class="message-body" >'
++    '         <div class="message-number">#</div>'
 +    '         <form>'
 +    '                <div class="message-block-date">'
 +    '                    day: <input type="date" name="messageDay" />'
@@ -12,16 +14,16 @@ var newMessage = function() {
 +    '                    time: <input type="time" name="messageTime" />'
 +    '                </div>'
 +    '                <div class="message-block-textarea">'
-+    '                    message:<textarea class="messageTextArea" type="text" value=""></textarea>'
++    '                    message:<textarea class="messageTextArea" type="text"></textarea>'
 +    '                </div>'
 +    '            </form>'
 +    '            <a class="callBack">'
 +    '                <span class="ion-ios-telephone"></span>'
 +    '                <span class="callback-number"></span>'
 +    '            </a>'
-+    '            <a class="button-remove-message">'
++    '            <button class="button-remove-message" title="">'
 +    '                <span class="ion-ios-trash-outline"></span>'
-+    '            </a>'
++    '            </button>'
 +    '        </section>';
     
     // set total messages to plus 1;
@@ -32,6 +34,8 @@ var newMessage = function() {
     });
     
     totalActiveMessages+=1;
+    totalMessages+=1;
+    $template.find('.message-number').append(totalMessages);
     return $template;
 };
 
@@ -52,14 +56,17 @@ var removeMessage = function(event) {
     console.log(totalActiveMessages);
 };
 
-var setNavBar = function() {
-  var date = new Date();
-  document.getElementsByClassName('todayDate')[0].innerHTML = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear().toString().substr(2,2);
+var getTodaysDate = function() {
+    var date = new Date();
+    return (date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear().toString());
 };
 
+var setNavBar = function() {
+  document.getElementsByClassName('todayDate')[0].innerHTML = getTodaysDate(true);
+};
 
 window.onload = function() {
     setNavBar();
-    //setNewMessage();
-    document.getElementById('addMessage').addEventListener("click", setNewMessage);
+    setNewMessage();
+    document.getElementsByClassName('add-section')[0].addEventListener("click", setNewMessage);
 };
