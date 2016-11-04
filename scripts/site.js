@@ -16,15 +16,15 @@ var newMessage = function() {
 +    '                <div class="message-block-textarea">'
 +    '                    message:<textarea class="messageTextArea" type="text"></textarea>'
 +    '                </div>'
-+    '            </form>'
 +    '            <a class="callBack">'
 +    '                <span class="ion-ios-telephone"></span>'
-+    '                <span class="callback-number"></span>'
++    '                <input class="callback-number"/>'
 +    '            </a>'
-+    '            <button class="button-remove-message" title="">'
++    '         </form>'
++    '            <div class="button-remove-message" title="">'
 +    '                <span class="ion-ios-trash-outline"></span>'
-+    '            </button>'
-+    '        </section>';
++    '            </div>'
++    '    </section>';
     
     // set total messages to plus 1;
     var $template = $(template);
