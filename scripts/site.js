@@ -5,8 +5,8 @@ var newMessage = function() {
     
     var template = 
 '        <section class="message-body" >'
-+    '         <div class="message-number">#</div>'
 +    '         <form>'
++    '         <div class="message-number">#</div>'
 +    '                <div class="message-block-date">'
 +    '                    day: <input type="date" name="messageDay" />'
 +    '                </div>'
@@ -20,10 +20,10 @@ var newMessage = function() {
 +    '                <span class="ion-ios-telephone"></span>'
 +    '                <input class="callback-number"/>'
 +    '            </a>'
-+    '         </form>'
 +    '            <div class="button-remove-message" title="">'
 +    '                <span class="ion-ios-trash-outline"></span>'
 +    '            </div>'
++    '         </form>'
 +    '    </section>';
     
     // set total messages to plus 1;
@@ -43,6 +43,10 @@ var setNewMessage = function() {
     var $messagesBody = $('#messages');
     $messagesBody.append(newMessage);
     console.log(totalActiveMessages);
+    // scroll to the bottom of the page to view newest message field
+    window.scroll(0, document.body.scrollHeight);
+    // as soon as new blank message is created, focus on date field
+    $(document).find('input[type="date"]')[totalMessages - 1].focus();
 };
 
 var removeMessage = function(event) {

@@ -129,13 +129,11 @@ input[class="callback-number"] {
 
 
 .button-remove-message {
-    font-size:2rem;
+    font-size: 2rem;
     margin-right: .5rem;
-    float:right;
-    background:none;
+    float: right;
+    background: none;
     position: relative;
-    bottom: 2.6rem;
-    border:none;
 }
 
 .button-remove-message:hover {
@@ -145,17 +143,17 @@ input[class="callback-number"] {
 
 /* #addMessage */
 input[class="add-section"] {
+    display: block;
+    position: relative;
+    bottom: 0.65rem;
+    left: 1rem;
     font-family: "Ionicons";
-    cursor:pointer;
-    width:4rem;
-    margin: 0 auto -1.5rem 1rem;
+    width: 4rem;
     border-radius: 0 0 .6rem .6rem;
-    text-align: center;
     background: rgb(105,107,113);
-    position:relative;
-    bottom: 2.55rem;
     box-shadow: inset 0 .3rem .3rem 0 rgba(32,30,30,.3);
-    border:none;
+    border: none;
+    cursor: pointer;
 }
 
 .add-section:hover {
