@@ -46,13 +46,14 @@ var setNewMessage = function() {
 };
 
 var removeMessage = function(event) {
-    $(event.target).parents('.message-body').remove();
+    var messageBody = $(event.target).parents('.message-body');
     if (totalActiveMessages > 1 ) {
         totalActiveMessages -= 1;
     } else {
         setNewMessage();
         totalActiveMessages = 1;
     }
+    messageBody.remove();
     console.log(totalActiveMessages);
 };
 
