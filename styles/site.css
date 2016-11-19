@@ -22,54 +22,75 @@ body {
     font-family: 'Open Sans';
     min-height: 100%;
     position:relative;
-    background-color:rgba(207,215,236,1);
+    background:rgb(54, 162, 54);
 }
 
 #topBar {
-    width:100%;
+    width: 100%;
     height: 3rem;
-    position:fixed;
-    background:rgba(95,158,190,.8);
-    color:white;
+    position: fixed;
+    background: rgba(255,255,255,.5);
+    color: white;
     font-weight: 700;
     line-height: 3rem;
-    z-index:99;
-    box-shadow: 0rem 0rem .3rem rgba(0,0,0,.9);
+    z-index: 99;
+    text-align: center;
+}
+
+.topBar-clipping {
+    background: rgb(54, 162, 54);
+    display: block;
+    position: fixed;
+    width: 2.8em;
+    height: 3em;
+    z-index: 3;
 }
 
 .todayDate {
-    display:table-cell;
-    position:inherit;
-    left:1rem;
+    display: inline-block;
+    margin-left: 1rem;
+    float: left;
 }
 
 .printPage{
-    position:inherit;
-    font-size:1.2rem;
-    right:2rem;
+    font-size: 1.2rem;
+    float: right;
+    display: inline-block;
+    margin-right: 2em;
+}
+
+.menu {
+    font-size: 2rem;
+    display: inline-block;
 }
 
 #messages {
     box-sizing: border-box;
-    display: inline-block;
-    max-width: 800px;
-    width:100%;
+    display: inline-table;
+    max-width: 700px;
     margin-top: 3rem;
+    padding-bottom: .5em;
+    padding-right: .5em;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+.message-block {
+    display:table-row-group;
 }
 
 .message-body {
-    display: block;
-    width: 98%;
-    background: rgba(144,147,154,1);
-    margin:.5rem auto;
-    border-radius: .25rem;
+    background: rgba(255,255,255,.32);
+    // margin:.5rem auto 0;
     padding: .3rem;
-    box-shadow: 0 .1rem .3rem rgba(0,0,0,.4);
+    // box-shadow: 0 .1rem .3rem rgba(0,0,0,.4);
 }
 
 .message-number {
-    float:right;
-    color:#fff;
+    color: white;
+    float: right;
+    margin-bottom: -1em;
+    padding-top: 0.8em;
 }
 
 .message-block-date, .message-block-time {
@@ -79,45 +100,69 @@ body {
 .message-block-textarea {
     display:inline-block;
     width: 100%;
+    text-align: center;
+    padding-top: .2rem;
 }
 
-input[type="date"],input[type="time"] {
+input[name="messageDay"],input[type="time"] {
     text-align: center;
-    background: rgba(255,255,255,.8);
-    border-radius: .25rem;
-    border: 0;
+    background: rgba(255,255,255,.5);
+    outline:none;
+    border: none;
     margin-top:.2rem;
+    padding-left:.2em;
+}
+
+input[name="messageDay"] {
+    font-style: italic;
+    color: rgba(0,0,0,.5);
+    text-shadow: 0 0 0px rgba(0,0,0,.2);
 }
 
 .messageTextArea {
     width:100%;
     min-height:5rem;
     font-size: .95rem;
-    border-radius: .2rem;
+    // border-radius: .2rem;
     padding:.4rem;
-    background: rgba(210,210,240,.95);
-    background-image: url('../assets/message_canvas.png');
-    background-size:cover;
-    box-shadow:inset 0rem .1rem .1rem rgba(0,0,0,.5);
+    background: rgba(255,255,255,.32);
+    // background-image: url('../assets/message_canvas.png');
+    // background-size:cover;
+    // box-shadow:inset 0rem .1rem .1rem rgba(0,0,0,.5);
     resize:vertical;
     overflow-y: visible;
+    outline: none;
+    border:none;
+    margin-top: .5rem;
 }
+
+.messageTextArea:hover, input[type="text"]:hover,input[type="time"]:hover,
+.messageTextArea:focus, input[type="text"]:focus,input[type="time"]:focus,
+.messageTextArea:active, input[type="text"]:active,input[type="time"]:active
+{
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color:rgba(255,255,255,.32);
+}
+
 
 .callBack { /* swap with ion-ios-telephone-outline to outline  */
     position:relative;
     right:0px;
     font-size:2rem;
+    color: rgb(255,255,255);
 }
+
 input[class="callback-number"] {
-    font-size: 1rem;
+    font-size: 1.1rem;
     background:inherit;
-    border-radius: .25rem;
-    border: none;
     position: absolute;
     line-height: 1.1rem;
     margin-left: .5rem;
-    top: .65rem;
+    top: .55rem;
     padding-left: .5rem;
+    outline:none;
+    border:none;
 }
 
 .callback-number:hover,
@@ -125,15 +170,20 @@ input[class="callback-number"] {
 .callback-number:focus {
     background-color: rgba(255,255,255,.1);
     cursor: text;
+    outline-width: 1px;
+    outline-color: rgba(255,255,255,.32);
+    outline-style: solid;
 }
 
-
 .button-remove-message {
-    font-size: 2rem;
-    margin-right: .5rem;
-    float: right;
-    background: none;
-    position: relative;
+    font-size: 1.5rem;
+    float: left;
+    // background: none;
+    position: absolute;
+    left: 3.3%;
+    // bottom: 5.3em;
+    margin-top: -.5em;
+    color: rgba(255,255,255,.5);
 }
 
 .button-remove-message:hover {
@@ -145,17 +195,146 @@ input[class="callback-number"] {
 input[class="add-section"] {
     display: block;
     position: relative;
-    bottom: 0.65rem;
-    left: 1rem;
+    left: 1em;
     font-family: "Ionicons";
-    width: 4rem;
-    border-radius: 0 0 .6rem .6rem;
-    background: rgb(105,107,113);
-    box-shadow: inset 0 .3rem .3rem 0 rgba(32,30,30,.3);
+    width: 3rem;
+    background: rgba(255,255,255,.32);
     border: none;
+    cursor: pointer;
+    height: 3rem;
+    border-radius: 2em;
+    margin-bottom: .5em;
+}
+
+.add-section:hover, .add-section:focus {
+    color: #fff;
+    text-shadow:
+            -1px -1px 0 #0f0,
+            1px -1px 0 #0f0,
+            -1px 1px 0 #0f0,
+            1px 1px 0 #0f0;
+    background: rgba(50,255,20,.3);
+    outline: none;
+}
+
+.ion-calendar,
+.ion-clock,
+.ion-document-text {
+    color: white;
+    font-size: 1.4rem;
+    margin: .5rem;
+}
+
+.line-break {
+    display: inline-block;
+    height: 2px;
+    width: 41%;
+    background: rgba(255,255,255,.5);
+    border-radius: 1px;
+    vertical-align: middle;
+}
+
+.note-perforation {
+    height: 0.5em;
+    color: rgb(54, 162, 54);
+    display: block;
+    line-height: .2em;
+    font-size: 3em;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    margin-top: -.2em;
+    margin-bottom: -.17em;
+}
+
+.ion-document-text {
+    line-height:0;
+    vertical-align: middle;
+}
+
+.message-anchor {
+    width: 7%;
+    display: table-cell;
+    height: 7em;
+    background: none;
+    transition: background .2s ease-in-out;
+    -webkit-transition: background .2s ease-in-out;
+    transition: background .2s ease-in-out;
+}
+
+.message-anchor:hover {
+    background: rgba(255,0,0,.4);
     cursor: pointer;
 }
 
-.add-section:hover {
-    color: #fff;
+.message-anchor:hover .button-remove-message {
+    color:white;
+    text-shadow:
+            -1px -1px 0 #f00,
+            1px -1px 0 #f00,
+            -1px 1px 0 #f00,
+            1px 1px 0 #f00;
+}
+
+.root {
+    display: block;
+    position: absolute;
+    width: .5em;
+    background: rgba(255,255,255,.5);
+    top: 3em;
+    left: 2.25em;
+    z-index:-1;
+}
+
+.anchor {
+    width: 1em;
+    height: .5em;
+    background: rgba(255,255,255,.5);
+    float:right;
+}
+
+@media only screen and (max-width: 550px) {
+    .printPage {
+        font-size: 1rem;
+        right: .7rem;
+    }
+    
+    .messageTextArea {
+        font-size: 1.2rem;
+    }
+    
+    .message-anchor {
+        display: -webkit-inline-box;
+        float: right;
+        height: 0px;
+        background: #f00;
+        margin-top: 1em;
+    }
+    .massage-anchor {
+        background: none;
+    }
+    
+    .root {
+        display:none;
+    }
+    
+    .button-remove-message {
+        font-size: 1.5rem;
+        color: rgba(255,255,255,.5);
+        position: relative;
+    }
+    .anchor {
+        display:none;
+    }
+    
+    input[class="add-section"] {
+        border-radius: 0 2rem 2rem 0;
+    }
+    
+    .topBar-clipping {
+        box-shadow:0 0.2em .5em rgba(0,0,0,.3);
+    }
+    #messages {
+        padding-right: 0;
+    }
 }
