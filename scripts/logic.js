@@ -37,7 +37,7 @@ var parseDateTime = function(input) {
             returnString = formatDate(returnString); // format to mm/dd/yy
         } else if ( weekdayIndex > todayIndex ) {
             // if index value of todayIndex is less than weekdayIndex, 
-            returnString = new Date( dateToday - (weekdayIndex - weekdayIndex + 6 ) * dayInMilliseconds );
+            returnString = new Date( dateToday - (todayIndex - weekdayIndex + 7 ) * dayInMilliseconds );
             returnString = formatDate(returnString); // format to calendar
         } else if ( weekdayIndex == todayIndex ) { // 7 days ago , not "today"
             returnString = new Date( dateToday - (7) * dayInMilliseconds );
@@ -53,20 +53,18 @@ var verifyEmployeeList = function(employeeObject) {
     return typeof employees !== 'undefined' ? true : false;
 };
 
-var phoneValidation = /\({0,1}(\d{3}){0,1}\){0,1}[\ |\-|\.]{0,1}(\d{3})[\ |\-|\.]{0,1}(\d{4})/igm; //regex
+var phoneValidation = /1{0,1}\({0,1}(\d{3}){0,1}\){0,1}[\ |\-|\.]{0,1}(\d{3})[\ |\-|\.]{0,1}(\d{4})/igm; //regex
 
 var parseMessage = function(input, event) {
     
     // logic for callback number capture
     var callbackNumber = phoneValidation.exec(input); // parsed Object
-    console.log(callbackNumber);
-    console.log( typeof callbackNumber[1] === 'undefined');
     var callBackField = event.target.parentElement.parentElement.getElementsByClassName('callback-number')[0];
     // if space is blank, fill it.
     if ( callBackField.value.trim().length === 0) {
         var value = [];
-        for ( var i = 3; i > 0 ; i-- ) {
-            if ( typeof callbackNumber[i] !== 'undefined') {
+        for ( var i = 3; i > 0 ; i-- ) { // 3 capture groups starting from the last
+            if ( callbackNumber[i] != null ) {
                 value.unshift(callbackNumber[i]);
             }
         }
@@ -76,4 +74,21 @@ var parseMessage = function(input, event) {
         callBackField.value = value.join("-");
     }
     
+};
+
+var daysAgo = function() {
+  /*
+  library {
+"monday" : getdays(mon),
+"mon" : getdays(mon),
+"yesterday": 1,
+"last week": 7,
+"week ago" : 7,
+
+}
+
+
+access the number of days with library["mon"] which should return the number of days to multiply by the 84600 - 
+
+  */
 };

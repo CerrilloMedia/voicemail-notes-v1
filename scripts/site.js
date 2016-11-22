@@ -47,7 +47,9 @@ var newMessage = function(totalMessages) {
     // attach listener to date field upon exit
     $template.find('input[name="messageDay"]').on("focusout", function(event) {
         var input = $(event.target).val();
-        if (input) {
+        if (input.toLowerCase() === "help") {
+            showHelpWindow();
+        } else if (input) {
             event.target.value  = parseDateTime(input);
         }
     });
@@ -90,7 +92,12 @@ var changeRootLength = function() {
     rootElement.style.height = messageBox.clientHeight + buttonMarginTop + "px";
 };
 
-// set message anchor length
+// menu specific funciton?
+var openMenuItem = function(menuobject) {
+    
+};
+
+// set message anchor width
 var setAnchor = function() {
    var rootObject = document.getElementsByClassName('root')[0];
    var messageAnchorObject = document.getElementsByClassName('message-anchor')[0];
@@ -98,18 +105,16 @@ var setAnchor = function() {
     
    var rootDistance = (parseFloat($(messageAnchorObject).css("width")) -  parseFloat($(rootObject).css("width")) ) / 2;
    
-   // set anchor
+   // set anchor width
     $('.anchor').css("width", rootDistance + "px");
-   // adjust topbar-clipping
-   
     
-    // delete button placement
+   // horizontally center delete button within anchor element.
    $('.button-remove-message').css("left", ((parseFloat($(messageAnchorObject).css("width")) -  parseFloat($('.button-remove-message').css("width")) ) / 2 ) + "px");
     
-   // centralize root object within message-anchor
+   // horizontally center message root element to anchor element width.
    $('.root').css("left", rootDistance + "px");
     
-   // add-section button placement
+   // horizontally center new-message button to anchor element width
     $('.add-section').css("left", ((parseFloat($(messageAnchorObject).css("width")) -  parseFloat($('.add-section').css("width")) ) / 2 ) + "px");
    $('.add-section').css( "margin", "inherit");
 };
@@ -149,7 +154,6 @@ var removeMessage = function(event) {
 // unused extra's == begin
 var updateToBackgroundColor = function() {
     var color = $(document.body).css("background-color");
-    console.log(color);
     $('.topBar-clipping').css("background-color", color);
     $('.note-perforation').css("color", color);
 }

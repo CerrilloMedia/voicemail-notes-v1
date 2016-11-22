@@ -59,9 +59,38 @@ body {
     margin-right: 2em;
 }
 
-.menu {
+.menu-button {
     font-size: 2rem;
     display: inline-block;
+}
+
+#topFloatingMenu {
+    background: rgba(255,255,255,.7);
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    top: 3.5rem;
+    position: fixed;
+    max-width: 660px;
+    color: rgba(0,0,0,.9);
+    display: none;
+}
+
+.close-floating-menu {
+    position: relative;
+    display: block;
+    float: right;
+    font-size: 1.7rem;
+    margin-right: .5rem;
+}
+
+.floating-menu-content {
+    text-align: center;
+    float:right;
+    width: 100%;
+    box-sizing: border-box;
+    padding: .1em 2em;
+    line-height: 1.8em;
 }
 
 #messages {

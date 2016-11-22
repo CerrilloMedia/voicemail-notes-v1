@@ -18,3 +18,19 @@ __Future Functionality:__ _for subsequent versions if time allows_
 _I'm currently going through a coding bootcamp so we'll see how the updates go._
 
 Cheers!
+
+#### Updates: 11/18/2016
+
+**Date field parsing**
+When checking voicemails our system does not specify the date but the day of the week and the time.
+Date input field can now parse data in the following format and returns as mm-dd-yyyy:
+- mm-dd, mm.dd, mm/dd
+- weekday names, short or full names. i.e. Sunday, Mon, Sat, Thursday ( case insensitive ).
+- terms like "yesterday", "today", "last week"
+- if one types in weekday name for today, it defaults to 7 days ago, similar to typing in "last week".
+
+**Flattened responsive design & added javascript/jquery to handle css window-resize updating**
+Took the rounded corners out and flattened the whole thing to make it easier to read if printing is required
+
+**Responsive design update**
+Altered the layout for smaller screen sizes to maximize message space.

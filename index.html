@@ -12,12 +12,24 @@
         
         <div id="topBar">
             <div class="todayDate">Today's date</div>
-            <div class="menu" title="menu">
+            <div class="menu-button" title="menu">
                 <span class="ion-more"></span>
             </div>
             <a class="printPage" href="#" onclick="window.print(); return false;">
                 print <span class="ion-ios-printer"></span>
             </a>
+            <div id="topFloatingMenu">
+                <a class="close-floating-menu">
+                    <span class="ion-ios-close"></span>
+                </a>
+                <section class="floating-menu-content">
+                    Date input field can now parse data in the following format and returns as mm-dd-yyyy:
+- mm-dd, mm.dd, mm/dd
+- weekday names, short or full names. i.e. Sunday, Mon, Sat, Thursday ( case insensitive ).
+- terms like "yesterday", "today", "last week"
+- if one types in weekday name for today, it defaults to 7 days ago, similar to typing in "last week".
+                </section>
+            </div>
         </div>
         <section class="topBar-clipping"></section>
         <div id="messages">
