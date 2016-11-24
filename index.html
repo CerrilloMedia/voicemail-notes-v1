@@ -12,22 +12,23 @@
         
         <div id="topBar">
             <div class="todayDate">Today's date</div>
-            <div class="menu-button" title="menu">
+            <a id="menu-button" title="menu">
                 <span class="ion-more"></span>
-            </div>
+            </a>
             <a class="printPage" href="#" onclick="window.print(); return false;">
                 print <span class="ion-ios-printer"></span>
             </a>
             <div id="topFloatingMenu">
-                <a class="close-floating-menu">
+                <a id="close-floating-menu">
                     <span class="ion-ios-close"></span>
                 </a>
                 <section class="floating-menu-content">
-                    Date input field can now parse data in the following format and returns as mm-dd-yyyy:
-- mm-dd, mm.dd, mm/dd
-- weekday names, short or full names. i.e. Sunday, Mon, Sat, Thursday ( case insensitive ).
-- terms like "yesterday", "today", "last week"
-- if one types in weekday name for today, it defaults to 7 days ago, similar to typing in "last week".
+                    <a class="colorButton" data-color="#8db8e9"></a>
+                    <a class="colorButton" data-color="#15a115"></a>
+                    <a class="colorButton" data-color="#cc2929"></a>
+                    <a class="colorButton" data-color="purple"></a>
+                    <a class="colorButton" data-color="black"></a>
+                    <a class="colorButton" data-color="orange"></a>
                 </section>
             </div>
         </div>
@@ -35,10 +36,11 @@
         <div id="messages">
         </div>
         <section class="root"></section>
-            <input class="add-section" type="submit" title="new blank message" value="&#xf218;" />
+            <input id="add-section" type="submit" title="new blank message" value="&#xf218;" />
+    <script src="https://cerrillomedia.github.io/voicemail-notes-v1/scripts/scripts/logic.js"></script>
+    <script src="https://cerrillomedia.github.io/voicemail-notes-v1/scripts/site.js"></script>
     <script src="scripts/logic.js"></script>
     <script src="scripts/site.js"></script>
-    <script src="https://cerrillomedia.github.io/voicemail-notes-v1/scripts/site.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </body>
 </html>

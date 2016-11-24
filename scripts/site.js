@@ -1,6 +1,7 @@
 var totalActiveMessages = 0;
 var totalMessages = 0;
 var dateToday = new Date();
+var themeColor = "";
 
 var newMessage = function(totalMessages) {
     
@@ -44,7 +45,7 @@ var newMessage = function(totalMessages) {
         removeMessage(event);
     });
     
-    // attach listener to date field upon exit
+    // attach listener to date field - logic fowarded to parseDateTime
     $template.find('input[name="messageDay"]').on("focusout", function(event) {
         var input = $(event.target).val();
         if (input.toLowerCase() === "help") {
@@ -54,7 +55,7 @@ var newMessage = function(totalMessages) {
         }
     });
     
-    // attach listener to date field upon exit
+    // attach listener to textArea upon exit to parseMessage
     $template.find('textarea[class="messageTextArea"]').on("focusout", function(event) {
         var input = (event.target).value;
         if (input.trim().length > 0 ) {
@@ -62,12 +63,12 @@ var newMessage = function(totalMessages) {
         }
     });
     
-    // add event listener to text area manual resize
+    // add event listener to text area manual resize for root-anchor length
     $template.find('.messageTextArea').on('mousedown', function (event) {
         // establish current textArea height
         var textArea = $(event.target).css("height");
         
-        // fire changeRootLength() when window is resized
+        // fire changeRootLength() when messageTextArea is 'dragged'
         $(window).on('mousemove', function(e) {
             if ( $(e.target).css("height") != textArea ) {
                 changeRootLength();
@@ -75,7 +76,16 @@ var newMessage = function(totalMessages) {
         });
     });
     
-    
+    // add event listener to phone number field. change CSS to reflect phone field is filled w/ data
+    $template.find('.callback-number').on("focusin focusout keypress", function(event) {
+        var phoneIcon = $(event.target.parentElement.getElementsByClassName('ion-ios-telephone')[0]);
+
+        if (event.target.value !== "") {
+            phoneIcon.css("color", "rgba(255,255,255,1)");
+        } else {
+            phoneIcon.css("color", "rgba(255,255,255,.3)");
+        }
+    });
     
     // update message number
     $template.find('.message-number').append(totalMessages);
@@ -83,19 +93,17 @@ var newMessage = function(totalMessages) {
     return $template;
 };
 
-// alter the root size of each message element
+// END ADD MESSAGE
+
+// alter the root size of each message element when text-area window is resized
 var changeRootLength = function() {
     var messageBox = document.getElementById('messages');
     var rootElement = document.getElementsByClassName('root')[0];
-    var button = document.getElementsByClassName('add-section')[0];
+    var button = document.getElementById('add-section');
     var buttonMarginTop = parseInt(window.getComputedStyle(button).marginTop,10);
     rootElement.style.height = messageBox.clientHeight + buttonMarginTop + "px";
 };
 
-// menu specific funciton?
-var openMenuItem = function(menuobject) {
-    
-};
 
 // set message anchor width
 var setAnchor = function() {
@@ -115,8 +123,8 @@ var setAnchor = function() {
    $('.root').css("left", rootDistance + "px");
     
    // horizontally center new-message button to anchor element width
-    $('.add-section').css("left", ((parseFloat($(messageAnchorObject).css("width")) -  parseFloat($('.add-section').css("width")) ) / 2 ) + "px");
-   $('.add-section').css( "margin", "inherit");
+    $('#add-section').css("left", ((parseFloat($(messageAnchorObject).css("width")) -  parseFloat($('#add-section').css("width")) ) / 2 ) + "px");
+   $('#add-section').css( "margin", "inherit");
 };
 
 var setNewMessage = function() {
@@ -134,6 +142,7 @@ var setNewMessage = function() {
     // adjust horizontal anchor width as well as vertical root bar
     $(window).resize();
     changeRootLength();
+    setThemeColor(themeColor);
     
     // as soon as new blank message is created, focus on date field
     $($(document).find('input[name="messageDay"]')[totalActiveMessages - 1]).focus();
@@ -151,28 +160,62 @@ var removeMessage = function(event) {
     totalActiveMessages-=1;
 };
 
-// unused extra's == begin
-var updateToBackgroundColor = function() {
-    var color = $(document.body).css("background-color");
+
+var setThemeColor = function(color) {
+    themeColor = color.toString();
+    $(document.body).css("background-color", color);
     $('.topBar-clipping').css("background-color", color);
     $('.note-perforation').css("color", color);
-}
-// unused extra's == begin
+};
 
 var formatDate = function(dateObject) {
     return (dateObject.getMonth()+1 + "/" + dateObject.getDate() + "/" + dateObject.getFullYear().toString());
 };
 
-var setNavBar = function() {
-  document.getElementsByClassName('todayDate')[0].innerHTML = formatDate(dateToday);
+var toggleMenu = function() {
+    var menu = $('#topFloatingMenu');
     
-  // add color picker for top menu
+    if ( menu.is(':visible') ) {
+        menu.slideUp(100);
+    } else {
+        menu.slideDown(200);
+    }
+    
+    // include a close window button to menu
+    $('#close-floating-menu').on('click', toggleMenu );
 };
 
+var setNavBar = function() {
+    // set today's date
+    document.getElementsByClassName('todayDate')[0].innerHTML = formatDate(dateToday);
+    
+    // establish colors in menu
+    setColorPickMenu();
+    
+    // add listener to show/hide top menu
+    $('#menu-button').on('click', toggleMenu );
+    
+    // 
+    $('.colorButton').on('click', function(event) {
+        themeColor =  $(event.target).data("color");
+        setThemeColor(themeColor);
+    });
+};
+
+var setColorPickMenu = function() {
+    // setUp the button colors in the menu to the colors specified in the data-color attribute
+    var colors = $('.colorButton');
+    for ( var i = 0; i < colors.length ; i++ ) {
+        var background = $(colors[i]).data("color");
+        $(colors[i]).css("background", background );
+    }
+}
+
 window.onload = function() {
+    // set NavBar data & menu's
     setNavBar();
-    // Event listener to add-section button
-    document.getElementsByClassName('add-section')[0].addEventListener("click", setNewMessage);
+    // Event listener to add-message button
+    document.getElementById('add-section').addEventListener("click", setNewMessage);
     // Event anchor/root resize to window.resize handler
     $(window).resize(function(){
         //changeRootLength();
@@ -184,7 +227,15 @@ window.onload = function() {
             $('.topBar-clipping').css("width", "100%");
             $('.button-remove-message').css("left", "0px");
         }
-        updateToBackgroundColor();
     });
+    // add first message to block
     setNewMessage();
+    
+    // set CTRL+m as new message
+    $(document).keydown(function(e) {
+        if (e.keyCode == 77 && e.ctrlKey) {
+            setNewMessage();
+        }
+    });
+    
 };

@@ -59,24 +59,19 @@ body {
     margin-right: 2em;
 }
 
-.menu-button {
+#menu-button {
     font-size: 2rem;
     display: inline-block;
 }
 
 #topFloatingMenu {
     background: rgba(255,255,255,.7);
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    top: 3.5rem;
-    position: fixed;
-    max-width: 660px;
+    max-width: 694px;
     color: rgba(0,0,0,.9);
-    display: none;
+    display:none;
 }
 
-.close-floating-menu {
+#close-floating-menu {
     position: relative;
     display: block;
     float: right;
@@ -86,11 +81,17 @@ body {
 
 .floating-menu-content {
     text-align: center;
-    float:right;
-    width: 100%;
     box-sizing: border-box;
-    padding: .1em 2em;
+    padding: 3em 3em;
     line-height: 1.8em;
+}
+
+.colorButton {
+    width: 4em;
+    height: 4em;
+    background: rgba(100,100,100);
+    display: inline-block;
+    border-radius: 2em;
 }
 
 #messages {
@@ -110,9 +111,7 @@ body {
 
 .message-body {
     background: rgba(255,255,255,.32);
-    // margin:.5rem auto 0;
     padding: .3rem;
-    // box-shadow: 0 .1rem .3rem rgba(0,0,0,.4);
 }
 
 .message-number {
@@ -152,12 +151,8 @@ input[name="messageDay"] {
     width:100%;
     min-height:5rem;
     font-size: .95rem;
-    // border-radius: .2rem;
     padding:.4rem;
     background: rgba(255,255,255,.32);
-    // background-image: url('../assets/message_canvas.png');
-    // background-size:cover;
-    // box-shadow:inset 0rem .1rem .1rem rgba(0,0,0,.5);
     resize:vertical;
     overflow-y: visible;
     outline: none;
@@ -165,13 +160,14 @@ input[name="messageDay"] {
     margin-top: .5rem;
 }
 
-.messageTextArea:hover, input[type="text"]:hover,input[type="time"]:hover,
-.messageTextArea:focus, input[type="text"]:focus,input[type="time"]:focus,
-.messageTextArea:active, input[type="text"]:active,input[type="time"]:active
+.messageTextArea:hover,input[type="text"]:hover,input[type="time"]:hover,
+.messageTextArea:focus,input[type="text"]:focus,input[type="time"]:focus,
+.messageTextArea:active,input[type="text"]:active,input[type="time"]:active
 {
-    outline-width: 1px;
-    outline-style: solid;
-    outline-color:rgba(255,255,255,.32);
+    //outline-width: 1px;
+    //outline-style: solid;
+    //outline-color:rgba(0,0,0,.5);
+    box-shadow: inset 0 0 2px 1px rgba(255,255,255,.5);
 }
 
 
@@ -179,7 +175,7 @@ input[name="messageDay"] {
     position:relative;
     right:0px;
     font-size:2rem;
-    color: rgb(255,255,255);
+    color: rgba(255,255,255,.3);
 }
 
 input[class="callback-number"] {
@@ -221,7 +217,7 @@ input[class="callback-number"] {
 }
 
 /* #addMessage */
-input[class="add-section"] {
+input[id="add-section"] {
     display: block;
     position: relative;
     left: 1em;
@@ -235,7 +231,7 @@ input[class="add-section"] {
     margin-bottom: .5em;
 }
 
-.add-section:hover, .add-section:focus {
+#add-section:hover, #add-section:focus {
     color: #fff;
     text-shadow:
             -1px -1px 0 #0f0,
@@ -251,7 +247,8 @@ input[class="add-section"] {
 .ion-document-text {
     color: white;
     font-size: 1.4rem;
-    margin: .5rem;
+    vertical-align: -.1em;
+    margin: auto .5rem;
 }
 
 .line-break {
@@ -329,7 +326,7 @@ input[class="add-section"] {
     }
     
     .messageTextArea {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .message-anchor {
@@ -356,7 +353,7 @@ input[class="add-section"] {
         display:none;
     }
     
-    input[class="add-section"] {
+    input[id="add-section"] {
         border-radius: 0 2rem 2rem 0;
     }
     
